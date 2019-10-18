@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.facebook.shimmer.ShimmerFrameLayout;
 import com.gonchi.flixster.adapters.MovieAdapter;
 import com.gonchi.flixster.models.Movie;
 
@@ -26,6 +28,7 @@ import static com.gonchi.flixster.models.Movie.fromJsonArray;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ShimmerFrameLayout shimmerFrameLayout;
     public static final String MOVIE_API_URL = "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
     public static final String TAG = "MainActivity";
     List<Movie> movies;
@@ -35,9 +38,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        shimmerFrameLayout = findViewById(R.id.shimmer_view_container);
+
         movies = new ArrayList<>();
 
-        RecyclerView rvMovies = findViewById(R.id.rvMovies);
+        final RecyclerView rvMovies = findViewById(R.id.rvMovies);
         final MovieAdapter movieAdapter = new MovieAdapter(this, movies);
         rvMovies.setAdapter(movieAdapter);
         rvMovies.setLayoutManager(new LinearLayoutManager(this));
@@ -53,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
                             Log.i(TAG, "Results " + results.toString());
                             movies.addAll(Movie.fromJsonArray(results));
                             movieAdapter.notifyDataSetChanged();
+                            rvMovies.setVisibility(View.VISIBLE);
+                            shimmerFrameLayout.setVisibility(View.GONE);
                             Log.i(TAG, "Array " + movies);
 
                         } catch (JSONException e) {
@@ -67,5 +74,17 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        shimmerFrameLayout.startShimmer();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        shimmerFrameLayout.stopShimmer();
     }
 }
