@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.gonchi.flixster.R;
 import com.gonchi.flixster.models.Movie;
 
@@ -69,7 +70,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     movie.getPosterPath();
 
             Log.d("MainActivity", Double.toString(movie.getVoteAverage()));
-            Glide.with(context).load(imageUrl).into(ivPoster);
+            Glide.with(context).load(imageUrl).apply(new RequestOptions().placeholder(R.drawable.placeholder_img)).into(ivPoster);
         }
     }
 }
