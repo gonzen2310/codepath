@@ -1,6 +1,5 @@
 package com.gonchi.flixster;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,7 +23,6 @@ import java.util.List;
 
 import okhttp3.Headers;
 
-import static com.gonchi.flixster.models.Movie.fromJsonArray;
 
 public class MainActivity extends AppCompatActivity {
 

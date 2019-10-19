@@ -2,9 +2,10 @@ package com.gonchi.flixster.adapters;
 
 import android.content.Context;
 import android.content.res.Configuration;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.view.ViewGroup; 
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,16 +16,19 @@ import com.bumptech.glide.Glide;
 import com.gonchi.flixster.R;
 import com.gonchi.flixster.models.Movie;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder>  {
 
     Context context;
     List<Movie> movies;
+    List<Movie> moviesFull;
 
     public MovieAdapter(Context context, List<Movie> movies) {
         this.context = context;
         this.movies = movies;
+        this.moviesFull = new ArrayList<>(movies);
     }
 
     @NonNull
@@ -64,6 +68,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     Configuration.ORIENTATION_LANDSCAPE) ? movie.getBackdropPath() :
                     movie.getPosterPath();
 
+            Log.d("MainActivity", Double.toString(movie.getVoteAverage()));
             Glide.with(context).load(imageUrl).into(ivPoster);
         }
     }
