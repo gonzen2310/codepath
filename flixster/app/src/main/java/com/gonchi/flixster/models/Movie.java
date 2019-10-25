@@ -3,10 +3,12 @@ package com.gonchi.flixster.models;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Parcel
 public class Movie {
     private String backdropPath;
     private String posterPath;
@@ -14,6 +16,7 @@ public class Movie {
     private String overview;
     private double voteAverage;
 
+    public  Movie() {}
     public Movie(JSONObject jsonObject) throws JSONException {
         this.voteAverage = jsonObject.getDouble("vote_average");
         this.backdropPath = jsonObject.getString("backdrop_path");
