@@ -41,7 +41,7 @@ public class DetailActivity extends YouTubeBaseActivity {
     youTubePlayerView = findViewById(R.id.player);
 
 
-    Movie movie = Parcels.unwrap(getIntent().getParcelableExtra("movie"));
+    final Movie movie = Parcels.unwrap(getIntent().getParcelableExtra("movie"));
     tvTitle.setText(movie.getTitle());
     ratingBar.setRating((float)movie.getVoteAverage());
     tvOverview.setText(movie.getOverview());
@@ -54,7 +54,7 @@ public class DetailActivity extends YouTubeBaseActivity {
           JSONArray results = json.jsonObject.getJSONArray("results");
           if(results.length() == 0) return;
           String youtubeKey = results.getJSONObject(0).getString("key");
-          initializeYoutube(youtubeKey);
+          initializeYoutube(youtubeKey, movie.getVoteAverage());
         } catch (JSONException e) {
           Log.e("DetailActivity", "failed to Parse Json", e);
           e.printStackTrace();
@@ -69,12 +69,16 @@ public class DetailActivity extends YouTubeBaseActivity {
 
   }
 
-  private void initializeYoutube(final String key) {
+  private void initializeYoutube(final String key, final double rating) {
     youTubePlayerView.initialize(YOUTUBE_API_KEY, new YouTubePlayer.OnInitializedListener() {
       @Override
       public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
         Log.d("DetailActivity", "onInitializationSuccess");
-        youTubePlayer.cueVideo(key);
+        if(rating <= 5) youTubePlayer.cueVideo(key);
+        else {
+          youTubePlayer.loadVideo(key);
+          youTubePlayer.setFullscreen(true);
+        }
       }
 
       @Override

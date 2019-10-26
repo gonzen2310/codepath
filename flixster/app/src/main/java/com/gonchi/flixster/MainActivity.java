@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         movies = new ArrayList<>();
 
         final RecyclerView rvMovies = findViewById(R.id.rvMovies);
-        final MovieAdapter movieAdapter = new MovieAdapter(this, movies);
+        final MovieAdapter movieAdapter = new MovieAdapter(this, movies, this);
         rvMovies.setAdapter(movieAdapter);
         rvMovies.setLayoutManager(new LinearLayoutManager(this));
 

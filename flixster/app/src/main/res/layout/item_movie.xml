@@ -5,27 +5,34 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#4a4a4a">
+    android:background="#333335">
+
 
     <ImageView
         android:id="@+id/ivPoster"
         android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/gradient_shape"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/tvTitle"
+        android:transitionName="title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:textSize="24sp"
         android:textColor="@android:color/white"
+        android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ivPoster"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivPoster"
         tools:text="Joker" />
 
     <TextView
@@ -35,12 +42,23 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:textColor="@android:color/white"
-        android:text="TextView"
-        android:maxLines="6"
+        android:textSize="13sp"
         android:ellipsize="end"
+        android:maxLines="6"
+        android:text="TextView"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/ivPoster"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle"
         tools:text="During the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure." />
+
+    <ImageView
+        android:id="@+id/ivPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_play_video"
+        app:layout_constraintBottom_toBottomOf="@+id/ivPoster"
+        app:layout_constraintEnd_toEndOf="@+id/ivPoster"
+        app:layout_constraintStart_toStartOf="@+id/ivPoster"
+        app:layout_constraintTop_toTopOf="@+id/ivPoster" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#4a4a4a">
+    android:background="#333335">
 
     <View
         android:id="@+id/view"
