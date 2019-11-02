@@ -11,8 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.codepath.apps.restclienttemplate.models.TweetModel;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder> {
@@ -63,19 +65,36 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
     ImageView ivProfileImage;
     TextView tvBody;
     TextView tvScreenName;
+    TextView tvCreatedAt;
+    TextView tvName;
+    ImageView ivVerified;
 
     public ViewHolder(@NonNull View itemView) {
       super(itemView);
       ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
       tvBody = itemView.findViewById(R.id.tvBody);
       tvScreenName = itemView.findViewById(R.id.tvScreenName);
-
+      tvCreatedAt = itemView.findViewById(R.id.tvCreatedAt);
+      tvName = itemView.findViewById(R.id.tvName);
+      ivVerified = itemView.findViewById(R.id.ivVerified);
     }
 
     public void bind(TweetModel tweet) {
       tvBody.setText(tweet.body);
-      tvScreenName.setText(tweet.user.screenName);
-      Glide.with(context).load(tweet.user.profileImageUrl).into(ivProfileImage);
+      String username = "@" + tweet.user.screenName;
+      tvScreenName.setText(username);
+      tvName.setText(tweet.user.name);
+      tvCreatedAt.setText(parseDate(tweet.createdAt));
+      if(!tweet.user.verified) ivVerified.setVisibility(View.GONE);
+      Glide.with(context).load(tweet.user.profileImageUrl).apply(RequestOptions.circleCropTransform()).into(ivProfileImage);
+    }
+
+    private String parseDate(String date) {
+      String[] dateArr = date.split("\\s+");
+      String[] newDate = Arrays.copyOfRange(dateArr, 0, 3);
+      StringBuilder sb = new StringBuilder();
+      for(String dt: newDate) sb.append(dt).append(" ");
+      return sb.toString();
     }
   }
 }

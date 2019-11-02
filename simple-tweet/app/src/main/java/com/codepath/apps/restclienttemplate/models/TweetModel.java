@@ -12,6 +12,7 @@ public class TweetModel {
   public String createdAt;
   public UserModel user;
   public long id;
+  public boolean verified;
 
   public static TweetModel fromJson(JSONObject jsonObject) throws JSONException {
     TweetModel tweet = new TweetModel();
