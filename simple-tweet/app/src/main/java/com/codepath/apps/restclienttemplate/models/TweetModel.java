@@ -11,11 +11,13 @@ public class TweetModel {
   public String body;
   public String createdAt;
   public UserModel user;
+  public long id;
 
   public static TweetModel fromJson(JSONObject jsonObject) throws JSONException {
     TweetModel tweet = new TweetModel();
     tweet.body = jsonObject.getString("text");
     tweet.createdAt = jsonObject.getString("created_at");
+    tweet.id = jsonObject.getLong("id");
     tweet.user = UserModel.fromJson(jsonObject.getJSONObject("user"));
     return tweet;
   }
