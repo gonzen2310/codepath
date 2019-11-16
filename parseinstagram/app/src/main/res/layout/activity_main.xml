@@ -27,6 +27,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Take picture"
+        android:background="@color/browser_chrome_text_color"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="@+id/etDescription"
         app:layout_constraintStart_toStartOf="@+id/etDescription"
         app:layout_constraintTop_toBottomOf="@+id/etDescription" />
@@ -46,6 +48,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Submit"
+        android:background="@color/browser_chrome_text_color"
+        android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="@+id/btnCaptureImage"
         app:layout_constraintStart_toStartOf="@+id/ivPostImage"
         app:layout_constraintTop_toBottomOf="@+id/ivPostImage" />
