@@ -23,6 +23,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
+import com.gonchi.parseinstagram.LoginActivity;
 import com.gonchi.parseinstagram.MainActivity;
 import com.gonchi.parseinstagram.Post;
 import com.gonchi.parseinstagram.R;
@@ -40,8 +41,9 @@ import java.util.List;
 public class ComposeFragment extends Fragment {
   public static final String TAG = "ComposeFragment";
 
-  private ConstraintLayout view;
+  private ConstraintLayout viewContainer;
 
+  private Button btnLogout;
   private EditText etDescription;
   private Button btnCaptureImage;
   private ImageView ivPostImage;
@@ -63,8 +65,8 @@ public class ComposeFragment extends Fragment {
     btnCaptureImage = view.findViewById(R.id.btnCaptureImage);
     ivPostImage = view.findViewById(R.id.ivPostImage);
     btnSubmit = view.findViewById(R.id.btnSubmit);
-    view = view.findViewById(R.id.mainContainer);
-
+    viewContainer = view.findViewById(R.id.mainContainer);
+    btnLogout = view.findViewById(R.id.btnLogout);
     btnCaptureImage.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -78,12 +80,16 @@ public class ComposeFragment extends Fragment {
       public void onClick(View v) {
         String description = etDescription.getText().toString();
         ParseUser user = ParseUser.getCurrentUser();
-        if (photoFile != null || ivPostImage.getDrawable() == null) {
-          Log.e(TAG, "No photo submitted");
-          Toast.makeText(getContext(), "There is no photo", Toast.LENGTH_SHORT).show();
-          return;
-        }
         savePost(description, user, photoFile);
+      }
+    });
+
+    btnLogout.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        ParseUser.logOut();
+        Intent intent = new Intent(getContext(), LoginActivity.class);
+        startActivity(intent);
       }
     });
   }
@@ -146,7 +152,7 @@ public class ComposeFragment extends Fragment {
     post.setUser(user);
     if (photoFile == null || ivPostImage.getDrawable() == null) {
       Log.e(TAG, "No photo to submit");
-      Snackbar.make(view, "Oosp! There is no photo", Snackbar.LENGTH_LONG).show();
+      Toast.makeText(getContext(), "Oosp! There is no photo", Toast.LENGTH_SHORT).show();
       return;
     }
     post.setImage(new ParseFile(photoFile));
@@ -156,10 +162,13 @@ public class ComposeFragment extends Fragment {
         if (e != null) {
           Log.e(TAG, "Error while saving");
           e.printStackTrace();
-          Snackbar.make(view, "Oosp! There was an error while saving", Snackbar.LENGTH_LONG).show();
+          Toast.makeText(getContext(), "Oosp! There was an error while saving", Toast.LENGTH_SHORT).show();
+
+//          Snackbar.make(viewContainer, "Oosp! There was an error while saving", Snackbar.LENGTH_LONG).show();
           return;
         }
-        Snackbar.make(view, "Posted added!", Snackbar.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "Posted added!", Toast.LENGTH_SHORT).show();
+
         Log.d(TAG, "Succeeded");
         etDescription.setText("");
         ivPostImage.setImageResource(0);

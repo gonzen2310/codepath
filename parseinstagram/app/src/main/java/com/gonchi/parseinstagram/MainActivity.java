@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.gonchi.parseinstagram.fragments.ComposeFragment;
 import com.gonchi.parseinstagram.fragments.PostsFragment;
+import com.gonchi.parseinstagram.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.parse.FindCallback;
@@ -72,20 +73,17 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                     case R.id.action_home:
                         fragment = new PostsFragment();
-                        Toast.makeText(MainActivity.this, "Home", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "Home", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.action_compose:
                         fragment = new ComposeFragment();
-                        Toast.makeText(MainActivity.this, "Compose", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "Compose", Toast.LENGTH_SHORT).show();
                         // do something here
                         break;
                     case R.id.action_profile:
-                        fragment = new ComposeFragment();
-                        Toast.makeText(MainActivity.this, "Profile", Toast.LENGTH_SHORT).show();
-                        // do something here
-                        break;
                     default:
-                        fragment = new ComposeFragment();
+                        fragment = new ProfileFragment();
+//                        Toast.makeText(MainActivity.this, "Profile", Toast.LENGTH_SHORT).show();
                         break;
                 }
                 fragmentManager.beginTransaction().replace(R.id.flContainer, fragment).commit();
