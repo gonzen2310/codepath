@@ -4,7 +4,7 @@
 Quiz app V2 for codepath Mobile App Design Course
 
 ### App Walk-though
-<img src="https://i.imgur.com/ApDzgPu.mp4" width=400><br>
+<img src="https://i.imgur.com/1tmpTbs.gif" width=400><br>
 
 
 ## Required
