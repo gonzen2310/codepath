@@ -78,6 +78,8 @@ public class AddCardActivity extends AppCompatActivity {
                 data.putExtra("option2", option2);
                 setResult(RESULT_OK, data);
                 finish();
+
+                getText(R.string.app_name).length();
             }
         });
     }
@@ -88,5 +90,5 @@ public class AddCardActivity extends AppCompatActivity {
         editOptions = getIntent().getStringArrayListExtra("editOptions");
         return editQuestion != null && editAnswer != null && editOptions != null;
     }
-    
+
 }
