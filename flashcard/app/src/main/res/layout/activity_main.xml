@@ -216,5 +216,4 @@
         app:layout_constraintTop_toTopOf="@+id/question_number_tv"
         app:srcCompat="@drawable/ic_delete" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

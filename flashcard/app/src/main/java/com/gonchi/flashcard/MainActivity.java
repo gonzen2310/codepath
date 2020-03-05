@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -186,7 +187,19 @@ public class MainActivity extends AppCompatActivity {
                 flashcardDatabase.deleteCard(questionTV.getText().toString());
                 allFlashcards = flashcardDatabase.getAllCards();
 //                Toast.makeText(MainActivity.this, String.valueOf(currentCardDisplayedIndex), Toast.LENGTH_SHORT).show();
+                if (allFlashcards.size() == 0) {
+                    Snackbar.make(findViewById(R.id.quiz_container),
+                            "No more questions left",
+                            Snackbar.LENGTH_SHORT)
+                            .show();
+                    return;
+                }
                 changeQuestion();
+                Snackbar.make(findViewById(R.id.quiz_container),
+                        "Card deleted",
+                        Snackbar.LENGTH_SHORT)
+                        .show();
+
             }
         });
     }
