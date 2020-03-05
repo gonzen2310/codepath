@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">flashcard</string>
     <string name="question">What is the largest state by area in the US</string>
+    <string name="question_number">Question</string>
 </resources>

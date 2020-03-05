@@ -43,7 +43,6 @@ public class AddCardActivity extends AppCompatActivity {
             questionET.setText(editQuestion);
             answerET.setText(editAnswer);
             editOptions.remove(editAnswer);
-
             option1ET.setText(editOptions.get(0));
             option2ET.setText(editOptions.get(1));
 
