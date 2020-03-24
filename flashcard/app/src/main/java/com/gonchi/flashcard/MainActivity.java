@@ -153,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AddCardActivity.class);
                 MainActivity.this.startActivityForResult(intent, ADD_REQUEST_CODE);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
             }
         });
 
@@ -164,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra("editQuestion", questionTV.getText().toString());
                 intent.putExtra("editAnswer", answerTV.getText().toString());
                 MainActivity.this.startActivityForResult(intent, EDIT_REQUEST_CODE);
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
             }
         });
 
